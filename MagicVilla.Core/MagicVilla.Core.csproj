@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
     <Folder Include="Helper\" />
-    <Folder Include="Services\" />
-    <Folder Include="ServiceContracts\" />
-    <Folder Include="Domain\RepositoriyContracts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
   </ItemGroup>
 
 </Project>

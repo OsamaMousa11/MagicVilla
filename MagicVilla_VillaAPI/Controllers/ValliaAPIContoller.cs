@@ -1,22 +1,21 @@
 ﻿using MagicVilla.Core.Domain.Entites;
+using MagicVilla.Core.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MagicVilla_VillaAPI.Controllers
 {
-    [Route("api/VillaAPI")]
+    [Route("api/[{{VillaApi}]")]
     [ApiController]
     public class ValliaAPIContoller: ControllerBase
     {
         [HttpGet]
 
-        public IEnumerable<Villa>GetVillas()
+        public IEnumerable<VillaResponse>GetVillas()
         {
-            return new List<Villa>()
-            {
-                new Villa{Id=1, Name="Pool View"},
-                new Villa{Id=2, Name="Beach View"}
+            return new List<VillaResponse>()
+            { 
             };
-
+             
         }
     }
 }
