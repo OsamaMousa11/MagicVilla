@@ -10,5 +10,8 @@ namespace MagicVilla.Core.Domain.RepositoriyContracts
     public  interface IVillasRespository
     {
         Task<List<Villa>> GetAllVillas();
+        Task <Villa> GetVilla(int villaId);
+        Task CreateVilla(Villa villa);
+
     }
 }
