@@ -39,6 +39,15 @@ namespace MagicVilla.Core.Services
 
         }
 
+        public async Task<bool> DeleteVila(int villaId)
+        {
+            var villa = await _villaRepository.GetVilla(villaId);
+            if (villa == null)return false;
+            await _villaRepository.DeleteAsync(villaId);
+            return true;
+                }
+        
+
         public async Task<List<VillaResponse>> GetAllVillas()
         {
             List<Villa> villas = await _villaRepository.GetAllVillas();
@@ -47,10 +56,28 @@ namespace MagicVilla.Core.Services
 
         }
 
-        public  async Task<VillaResponse> GetVillabyId(int villaId)
+        public  async Task<VillaResponse?> GetVillabyId(int villaId)
         {
             Villa villa= await _villaRepository.GetVilla(villaId);
             return villa.ToVillaResponse();
+        }
+
+        public async Task<VillaResponse?> UpdateVilla(int id, VillaUpdateRequest villaUpdateRequest)
+        {
+           if(villaUpdateRequest == null || id == 0)
+            {
+                throw new ArgumentNullException("Invalid villa data or ID");
+            }
+          var matchingVilla = await _villaRepository.GetVilla(id);
+            if(matchingVilla == null)
+            {
+                throw new Exception("Villa not found");
+            }
+
+            matchingVilla.Name = villaUpdateRequest.Name;
+   
+            var updatedVilla= await _villaRepository.UpdateAsync(id, matchingVilla);
+            return updatedVilla.ToVillaResponse();
         }
     }
 }
